@@ -5,18 +5,20 @@ import (
 	"encoding/csv"
 	"fmt"
 	"os"
+	"runtime"
 	"strconv"
 	"strings"
 )
 
-func main()  {
+func main() {
 	quizGame()
 }
 
 // Exercise #1: Quiz Game
 func quizGame() {
 	recordFile, err := os.Open("./resources/problems.csv")
-	var count, total int
+	count := 0
+	total := 0
 
 	if err != nil {
 		fmt.Println("An error encountered ::", err)
@@ -24,18 +26,19 @@ func quizGame() {
 	reader := csv.NewReader(recordFile)
 	records, _ := reader.ReadAll()
 
-	inputReader:= bufio.NewReader(os.Stdin)
+	inputReader := bufio.NewReader(os.Stdin)
 
-	for _ , record := range records {
+	for _, record := range records {
 		fmt.Println(record[0])
 		answ, _ := inputReader.ReadString('\n')
 
-		answ = strings.TrimSuffix(answ, "\n")
+		if runtime.GOOS == "windows" {
+			answ = strings.TrimRight(answ, "\r\n")
+		} else {
+			answ = strings.TrimRight(answ, "\n")
+		}
 
-		resp, _ := strconv.Atoi(answ)
-		sol, _ := strconv.Atoi(record[1])
-
-		if resp == sol {
+		if strings.Compare(answ, record[1]) == 0 {
 			count++
 		}
 
@@ -44,6 +47,3 @@ func quizGame() {
 
 	fmt.Println("Correct Answers: " + strconv.Itoa(count) + "/" + strconv.Itoa(total))
 }
-
-
-
