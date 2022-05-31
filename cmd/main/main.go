@@ -2,5 +2,6 @@ package main
 
 func main() {
 	// QuizGame()
-	UrlShortener()
+	// UrlShortener()
+	ChooseYourOwnAdventure()
 }
