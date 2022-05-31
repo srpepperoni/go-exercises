@@ -35,11 +35,12 @@ I learnd how to use http.Handler and http.HandlerFunc
 I had problems with yaml unmarshall due to tabs into []byte objects (delete any tab char from that objects in this unmarshall actions)
 I had little isuee understanding correct behaviour of defined struct till I saw I should pass an array of my defined struct into unmarshall action
 
-TODO: read from yaml file instead of variable in yaml format
-TODO: read from json
-TODO: read from database
+- [ ] read from yaml file instead of variable in yaml format
+- [ ] read from json
+- [ ] read from database
 
 
 ### Choose Your Own Adventure
 
-WIP
+When some object is created for some template you have to create public params, otherwise parse method could not parse that values.
+If you want to create some array in execution cycle it has to be with make method otherwise you could throw some outofbounds exception when you use that array in future

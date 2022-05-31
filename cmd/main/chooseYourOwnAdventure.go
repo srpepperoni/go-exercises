@@ -25,9 +25,20 @@ func ChooseYourOwnAdventure() {
 	http.ListenAndServe(":8080", mux)
 }
 
-type home struct{}
+type home struct {
+	arc string
+}
 
 func (h *home) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	h.arc = "intro"
+	keys, ok := r.URL.Query()["arc"]
+
+	if !ok || len(keys[0]) < 1 {
+		fmt.Println("Url Param 'key' is missing")
+	} else {
+		h.arc = keys[0]
+	}
+
 	jsonFile, _ := os.Open("../../resources/gopher.json")
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 
@@ -37,8 +48,5 @@ func (h *home) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(byteValue, &result)
 
 	t := template.Must(template.ParseFiles("../../resources/home.html"))
-	t.Execute(w, result["intro"])
+	t.Execute(w, result[h.arc])
 }
-
-// Tener cuidado al crear los objetos que se mapean en las templates, los campos deben sen publicos (primera mayuscula)
-// inicializar arrays en ejecucion con make si no al indexar un valor lanza un outofboundsexception
