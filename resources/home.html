@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Test</title>
-	</head>
-	<body>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<style>
+		.content {
+			max-width: 500px;
+			margin: auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="content">
 		<h1>{{.Title}}</h1>
 		{{range .Story -}}
-			<p>{{.}}</p>
+		<p>{{.}}</p>
 		{{end}}
 		{{range .Options -}}
 		<ul>
-			<li>{{.Text}}</li>
+			<li><a href="/?arc={{.Arc}}">{{.Text}}</a></li>
 		</ul>
 		{{end}}
-	</body>
+	</div>
+</body>
+
 </html>

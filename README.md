@@ -5,8 +5,8 @@ Go exercises from calhoun.io
 
 - [x] Quiz Game
 - [x] Url Shortener
-- [ ] Choose Your Own Adventure <---- WIP
-- [ ] HTML Link Parser
+- [x] Choose Your Own Adventure
+- [ ] HTML Link Parser -------> WIP
 - [ ] Sitemap Builder
 - [ ] Hacker Rank Problem
 - [ ] CLI Task Manager
@@ -44,3 +44,5 @@ I had little isuee understanding correct behaviour of defined struct till I saw 
 
 When some object is created for some template you have to create public params, otherwise parse method could not parse that values.
 If you want to create some array in execution cycle it has to be with make method otherwise you could throw some outofbounds exception when you use that array in future
+
+- [ ] Console mode
